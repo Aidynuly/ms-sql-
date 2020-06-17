@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CorollaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Availibility0">
+    <Key>
+      <PropertyRef Name="supply_id" />
+    </Key>
+    <Property Name="supply_id" Type="int" Nullable="false" />
+    <Property Name="drug_id" Type="int" />
+    <Property Name="pharmacy_id" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="price" Type="int" />
+  </EntityType>
+  <EntityType Name="City0">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="int" Nullable="false" />
+    <Property Name="country_id" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Country0">
+    <Key>
+      <PropertyRef Name="country_id" />
+    </Key>
+    <Property Name="country_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer0">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="complaint" Type="varchar" MaxLength="50" />
+    <Property Name="contacts" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee0">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="int" Nullable="false" />
+    <Property Name="pharmacy_id" Type="int" />
+    <Property Name="position_id" Type="int" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" />
+    <Property Name="salary" Type="int" />
+    <Property Name="contacts" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Medicine0">
+    <Key>
+      <PropertyRef Name="drug_id" />
+    </Key>
+    <Property Name="manufacturer" Type="varchar" MaxLength="50" />
+    <Property Name="drug_id" Type="int" Nullable="false" />
+    <Property Name="drugname" Type="varchar" MaxLength="50" />
+    <Property Name="drugtype" Type="varchar" MaxLength="50" />
+    <Property Name="amountinpack" Type="int" />
+    <Property Name="indications" Type="varchar" MaxLength="300" />
+    <Property Name="medical_group" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Payment0">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="payment_id" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" />
+    <Property Name="visiting_id" Type="int" />
+    <Property Name="paymenttype" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pharmacy0">
+    <Key>
+      <PropertyRef Name="pharmacy_id" />
+    </Key>
+    <Property Name="city_id" Type="int" />
+    <Property Name="pharmacy_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="pharmaddress" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Position0">
+    <Key>
+      <PropertyRef Name="position_id" />
+    </Key>
+    <Property Name="position_id" Type="int" Nullable="false" />
+    <Property Name="position" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Visiting0">
+    <Key>
+      <PropertyRef Name="visiting_id" />
+    </Key>
+    <Property Name="employee_id" Type="int" />
+    <Property Name="visiting_id" Type="int" Nullable="false" />
+    <Property Name="visiting_time" Type="datetime" />
+    <Property Name="customer_id" Type="int" />
+  </EntityType>
+  <Association Name="FK__Availibil__drug___1BC821DD">
+    <End Role="Medicine0" Type="Self.Medicine0" Multiplicity="0..1" />
+    <End Role="Availibility0" Type="Self.Availibility0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine0">
+        <PropertyRef Name="drug_id" />
+      </Principal>
+      <Dependent Role="Availibility0">
+        <PropertyRef Name="drug_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Availibil__pharm__1CBC4616">
+    <End Role="Pharmacy0" Type="Self.Pharmacy0" Multiplicity="0..1" />
+    <End Role="Availibility0" Type="Self.Availibility0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy0">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Availibility0">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City0__country_i__151B244E">
+    <End Role="Country0" Type="Self.Country0" Multiplicity="0..1" />
+    <End Role="City0" Type="Self.City0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country0">
+        <PropertyRef Name="country_id" />
+      </Principal>
+      <Dependent Role="City0">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee0__pharm__17036CC0">
+    <End Role="Pharmacy0" Type="Self.Pharmacy0" Multiplicity="0..1" />
+    <End Role="Employee0" Type="Self.Employee0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy0">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Employee0">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee0__posit__17F790F9">
+    <End Role="Position0" Type="Self.Position0" Multiplicity="0..1" />
+    <End Role="Employee0" Type="Self.Employee0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position0">
+        <PropertyRef Name="position_id" />
+      </Principal>
+      <Dependent Role="Employee0">
+        <PropertyRef Name="position_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment0__visiti__1AD3FDA4">
+    <End Role="Visiting0" Type="Self.Visiting0" Multiplicity="0..1" />
+    <End Role="Payment0" Type="Self.Payment0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visiting0">
+        <PropertyRef Name="visiting_id" />
+      </Principal>
+      <Dependent Role="Payment0">
+        <PropertyRef Name="visiting_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pharmacy0__city___160F4887">
+    <End Role="City0" Type="Self.City0" Multiplicity="0..1" />
+    <End Role="Pharmacy0" Type="Self.Pharmacy0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City0">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="Pharmacy0">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Visiting0__custo__19DFD96B">
+    <End Role="Customer0" Type="Self.Customer0" Multiplicity="0..1" />
+    <End Role="Visiting0" Type="Self.Visiting0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer0">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="Visiting0">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Visiting0__emplo__18EBB532">
+    <End Role="Employee0" Type="Self.Employee0" Multiplicity="0..1" />
+    <End Role="Visiting0" Type="Self.Visiting0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee0">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="Visiting0">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище CorollaModelContainer">
+    <EntitySet Name="Availibility0" EntityType="Self.Availibility0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City0" EntityType="Self.City0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country0" EntityType="Self.Country0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer0" EntityType="Self.Customer0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee0" EntityType="Self.Employee0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medicine0" EntityType="Self.Medicine0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment0" EntityType="Self.Payment0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pharmacy0" EntityType="Self.Pharmacy0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position0" EntityType="Self.Position0" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visiting0" EntityType="Self.Visiting0" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Availibil__drug___1BC821DD" Association="Self.FK__Availibil__drug___1BC821DD">
+      <End Role="Medicine0" EntitySet="Medicine0" />
+      <End Role="Availibility0" EntitySet="Availibility0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Availibil__pharm__1CBC4616" Association="Self.FK__Availibil__pharm__1CBC4616">
+      <End Role="Pharmacy0" EntitySet="Pharmacy0" />
+      <End Role="Availibility0" EntitySet="Availibility0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City0__country_i__151B244E" Association="Self.FK__City0__country_i__151B244E">
+      <End Role="Country0" EntitySet="Country0" />
+      <End Role="City0" EntitySet="City0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee0__pharm__17036CC0" Association="Self.FK__Employee0__pharm__17036CC0">
+      <End Role="Pharmacy0" EntitySet="Pharmacy0" />
+      <End Role="Employee0" EntitySet="Employee0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee0__posit__17F790F9" Association="Self.FK__Employee0__posit__17F790F9">
+      <End Role="Position0" EntitySet="Position0" />
+      <End Role="Employee0" EntitySet="Employee0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment0__visiti__1AD3FDA4" Association="Self.FK__Payment0__visiti__1AD3FDA4">
+      <End Role="Visiting0" EntitySet="Visiting0" />
+      <End Role="Payment0" EntitySet="Payment0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pharmacy0__city___160F4887" Association="Self.FK__Pharmacy0__city___160F4887">
+      <End Role="City0" EntitySet="City0" />
+      <End Role="Pharmacy0" EntitySet="Pharmacy0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Visiting0__custo__19DFD96B" Association="Self.FK__Visiting0__custo__19DFD96B">
+      <End Role="Customer0" EntitySet="Customer0" />
+      <End Role="Visiting0" EntitySet="Visiting0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Visiting0__emplo__18EBB532" Association="Self.FK__Visiting0__emplo__18EBB532">
+      <End Role="Employee0" EntitySet="Employee0" />
+      <End Role="Visiting0" EntitySet="Visiting0" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

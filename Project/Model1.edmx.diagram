@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f96a265751ae46f79e4f61328aea3c81" Name="Diagram1">
+        <EntityTypeShape EntityType="CorollaModel.Availibility0" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.City0" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Country0" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Customer0" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Employee0" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Medicine0" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Payment0" Width="1.5" PointX="15" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Pharmacy0" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Position0" Width="1.5" PointX="8.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorollaModel.Visiting0" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="CorollaModel.FK__Availibil__drug___1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Availibil__pharm__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__City0__country_i__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Pharmacy0__city___160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Visiting0__custo__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Employee0__pharm__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Employee0__posit__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Visiting0__emplo__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="CorollaModel.FK__Payment0__visiti__1AD3FDA4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

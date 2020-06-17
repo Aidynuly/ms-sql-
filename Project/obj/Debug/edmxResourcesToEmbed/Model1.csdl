@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CorollaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Availibility0">
+    <Key>
+      <PropertyRef Name="supply_id" />
+    </Key>
+    <Property Name="supply_id" Type="Int32" Nullable="false" />
+    <Property Name="drug_id" Type="Int32" />
+    <Property Name="pharmacy_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="Int32" />
+    <NavigationProperty Name="Medicine0" Relationship="Self.FK__Availibil__drug___1BC821DD" FromRole="Availibility0" ToRole="Medicine0" />
+    <NavigationProperty Name="Pharmacy0" Relationship="Self.FK__Availibil__pharm__1CBC4616" FromRole="Availibility0" ToRole="Pharmacy0" />
+  </EntityType>
+  <EntityType Name="City0">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="Int32" Nullable="false" />
+    <Property Name="country_id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Country0" Relationship="Self.FK__City0__country_i__151B244E" FromRole="City0" ToRole="Country0" />
+    <NavigationProperty Name="Pharmacy0" Relationship="Self.FK__Pharmacy0__city___160F4887" FromRole="City0" ToRole="Pharmacy0" />
+  </EntityType>
+  <EntityType Name="Country0">
+    <Key>
+      <PropertyRef Name="country_id" />
+    </Key>
+    <Property Name="country_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="City0" Relationship="Self.FK__City0__country_i__151B244E" FromRole="Country0" ToRole="City0" />
+  </EntityType>
+  <EntityType Name="Customer0">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="complaint" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contacts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Visiting0" Relationship="Self.FK__Visiting0__custo__19DFD96B" FromRole="Customer0" ToRole="Visiting0" />
+  </EntityType>
+  <EntityType Name="Employee0">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="Int32" Nullable="false" />
+    <Property Name="pharmacy_id" Type="Int32" />
+    <Property Name="position_id" Type="Int32" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="salary" Type="Int32" />
+    <Property Name="contacts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pharmacy0" Relationship="Self.FK__Employee0__pharm__17036CC0" FromRole="Employee0" ToRole="Pharmacy0" />
+    <NavigationProperty Name="Position0" Relationship="Self.FK__Employee0__posit__17F790F9" FromRole="Employee0" ToRole="Position0" />
+    <NavigationProperty Name="Visiting0" Relationship="Self.FK__Visiting0__emplo__18EBB532" FromRole="Employee0" ToRole="Visiting0" />
+  </EntityType>
+  <EntityType Name="Medicine0">
+    <Key>
+      <PropertyRef Name="drug_id" />
+    </Key>
+    <Property Name="manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="drug_id" Type="Int32" Nullable="false" />
+    <Property Name="drugname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="drugtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="amountinpack" Type="Int32" />
+    <Property Name="indications" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="medical_group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Availibility0" Relationship="Self.FK__Availibil__drug___1BC821DD" FromRole="Medicine0" ToRole="Availibility0" />
+  </EntityType>
+  <EntityType Name="Payment0">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="payment_id" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="visiting_id" Type="Int32" />
+    <Property Name="paymenttype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Visiting0" Relationship="Self.FK__Payment0__visiti__1AD3FDA4" FromRole="Payment0" ToRole="Visiting0" />
+  </EntityType>
+  <EntityType Name="Pharmacy0">
+    <Key>
+      <PropertyRef Name="pharmacy_id" />
+    </Key>
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="pharmacy_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pharmaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Availibility0" Relationship="Self.FK__Availibil__pharm__1CBC4616" FromRole="Pharmacy0" ToRole="Availibility0" />
+    <NavigationProperty Name="City0" Relationship="Self.FK__Pharmacy0__city___160F4887" FromRole="Pharmacy0" ToRole="City0" />
+    <NavigationProperty Name="Employee0" Relationship="Self.FK__Employee0__pharm__17036CC0" FromRole="Pharmacy0" ToRole="Employee0" />
+  </EntityType>
+  <EntityType Name="Position0">
+    <Key>
+      <PropertyRef Name="position_id" />
+    </Key>
+    <Property Name="position_id" Type="Int32" Nullable="false" />
+    <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee0" Relationship="Self.FK__Employee0__posit__17F790F9" FromRole="Position0" ToRole="Employee0" />
+  </EntityType>
+  <EntityType Name="Visiting0">
+    <Key>
+      <PropertyRef Name="visiting_id" />
+    </Key>
+    <Property Name="employee_id" Type="Int32" />
+    <Property Name="visiting_id" Type="Int32" Nullable="false" />
+    <Property Name="visiting_time" Type="DateTime" Precision="3" />
+    <Property Name="customer_id" Type="Int32" />
+    <NavigationProperty Name="Customer0" Relationship="Self.FK__Visiting0__custo__19DFD96B" FromRole="Visiting0" ToRole="Customer0" />
+    <NavigationProperty Name="Employee0" Relationship="Self.FK__Visiting0__emplo__18EBB532" FromRole="Visiting0" ToRole="Employee0" />
+    <NavigationProperty Name="Payment0" Relationship="Self.FK__Payment0__visiti__1AD3FDA4" FromRole="Visiting0" ToRole="Payment0" />
+  </EntityType>
+  <Association Name="FK__Availibil__drug___1BC821DD">
+    <End Role="Medicine0" Type="Self.Medicine0" Multiplicity="0..1" />
+    <End Role="Availibility0" Type="Self.Availibility0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine0">
+        <PropertyRef Name="drug_id" />
+      </Principal>
+      <Dependent Role="Availibility0">
+        <PropertyRef Name="drug_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Availibil__pharm__1CBC4616">
+    <End Role="Pharmacy0" Type="Self.Pharmacy0" Multiplicity="0..1" />
+    <End Role="Availibility0" Type="Self.Availibility0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy0">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Availibility0">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City0__country_i__151B244E">
+    <End Role="Country0" Type="Self.Country0" Multiplicity="0..1" />
+    <End Role="City0" Type="Self.City0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country0">
+        <PropertyRef Name="country_id" />
+      </Principal>
+      <Dependent Role="City0">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pharmacy0__city___160F4887">
+    <End Role="City0" Type="Self.City0" Multiplicity="0..1" />
+    <End Role="Pharmacy0" Type="Self.Pharmacy0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City0">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="Pharmacy0">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Visiting0__custo__19DFD96B">
+    <End Role="Customer0" Type="Self.Customer0" Multiplicity="0..1" />
+    <End Role="Visiting0" Type="Self.Visiting0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer0">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="Visiting0">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee0__pharm__17036CC0">
+    <End Role="Pharmacy0" Type="Self.Pharmacy0" Multiplicity="0..1" />
+    <End Role="Employee0" Type="Self.Employee0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharmacy0">
+        <PropertyRef Name="pharmacy_id" />
+      </Principal>
+      <Dependent Role="Employee0">
+        <PropertyRef Name="pharmacy_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee0__posit__17F790F9">
+    <End Role="Position0" Type="Self.Position0" Multiplicity="0..1" />
+    <End Role="Employee0" Type="Self.Employee0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position0">
+        <PropertyRef Name="position_id" />
+      </Principal>
+      <Dependent Role="Employee0">
+        <PropertyRef Name="position_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Visiting0__emplo__18EBB532">
+    <End Role="Employee0" Type="Self.Employee0" Multiplicity="0..1" />
+    <End Role="Visiting0" Type="Self.Visiting0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee0">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="Visiting0">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment0__visiti__1AD3FDA4">
+    <End Role="Visiting0" Type="Self.Visiting0" Multiplicity="0..1" />
+    <End Role="Payment0" Type="Self.Payment0" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visiting0">
+        <PropertyRef Name="visiting_id" />
+      </Principal>
+      <Dependent Role="Payment0">
+        <PropertyRef Name="visiting_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CorollaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Availibility0" EntityType="Self.Availibility0" />
+    <EntitySet Name="City0" EntityType="Self.City0" />
+    <EntitySet Name="Country0" EntityType="Self.Country0" />
+    <EntitySet Name="Customer0" EntityType="Self.Customer0" />
+    <EntitySet Name="Employee0" EntityType="Self.Employee0" />
+    <EntitySet Name="Medicine0" EntityType="Self.Medicine0" />
+    <EntitySet Name="Payment0" EntityType="Self.Payment0" />
+    <EntitySet Name="Pharmacy0" EntityType="Self.Pharmacy0" />
+    <EntitySet Name="Position0" EntityType="Self.Position0" />
+    <EntitySet Name="Visiting0" EntityType="Self.Visiting0" />
+    <AssociationSet Name="FK__Availibil__drug___1BC821DD" Association="Self.FK__Availibil__drug___1BC821DD">
+      <End Role="Medicine0" EntitySet="Medicine0" />
+      <End Role="Availibility0" EntitySet="Availibility0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Availibil__pharm__1CBC4616" Association="Self.FK__Availibil__pharm__1CBC4616">
+      <End Role="Pharmacy0" EntitySet="Pharmacy0" />
+      <End Role="Availibility0" EntitySet="Availibility0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City0__country_i__151B244E" Association="Self.FK__City0__country_i__151B244E">
+      <End Role="Country0" EntitySet="Country0" />
+      <End Role="City0" EntitySet="City0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pharmacy0__city___160F4887" Association="Self.FK__Pharmacy0__city___160F4887">
+      <End Role="City0" EntitySet="City0" />
+      <End Role="Pharmacy0" EntitySet="Pharmacy0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Visiting0__custo__19DFD96B" Association="Self.FK__Visiting0__custo__19DFD96B">
+      <End Role="Customer0" EntitySet="Customer0" />
+      <End Role="Visiting0" EntitySet="Visiting0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee0__pharm__17036CC0" Association="Self.FK__Employee0__pharm__17036CC0">
+      <End Role="Pharmacy0" EntitySet="Pharmacy0" />
+      <End Role="Employee0" EntitySet="Employee0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee0__posit__17F790F9" Association="Self.FK__Employee0__posit__17F790F9">
+      <End Role="Position0" EntitySet="Position0" />
+      <End Role="Employee0" EntitySet="Employee0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Visiting0__emplo__18EBB532" Association="Self.FK__Visiting0__emplo__18EBB532">
+      <End Role="Employee0" EntitySet="Employee0" />
+      <End Role="Visiting0" EntitySet="Visiting0" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment0__visiti__1AD3FDA4" Association="Self.FK__Payment0__visiti__1AD3FDA4">
+      <End Role="Visiting0" EntitySet="Visiting0" />
+      <End Role="Payment0" EntitySet="Payment0" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CorollaModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CorollaModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
